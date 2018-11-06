@@ -1,6 +1,10 @@
 
 import time
 import RPi.GPIO as GPIO
+from picamera import PiCamera
+from time import sleep
+
+camera =PiCamera()
 
 def reading(sensor):
   
@@ -64,5 +68,17 @@ def reading(sensor):
   
     else:
         print ("Incorrect usonic() function variable.")
-        
 print (reading(0))
+
+def camera():
+    parameter = 50.0
+    if distance <= parameter
+        camera.start_preview()
+        sleep(10)
+        camera.stop_preview()
+        
+def main():
+    distance = reading(sensor)
+    camera(distance)
+main()
+
