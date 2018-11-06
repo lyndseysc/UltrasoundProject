@@ -1,12 +1,13 @@
 
 import time
 import RPi.GPIO as GPIO
-from picamera import PiCamera
+#from picamera import PiCamera
 from time import sleep
 
-camera =PiCamera()
+#camera =PiCamera()
 
-def reading(sensor):
+
+def reading():
   
 # GPIO output = the pin that's connected to "Trig" on the sensor
 # GPIO input = the pin that's connected to "Echo" on the sensor
@@ -18,7 +19,7 @@ def reading(sensor):
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
      
-    if sensor == 0:
+    while True:
  
         # Setup the GPIO pins for TRIG and ECHO, including defining
         # if these are input or output pins
@@ -59,26 +60,47 @@ def reading(sensor):
         # Define relation between "distance" and "timepassed"
          
         distance = (34000.0 * timepassed) * 0.5
-         
+        print(distance)
+        parameter = 10.0
+        GPIO.setmode(GPIO.BCM)
+        LED0 = 24
+        if distance <= parameter:
+            GPIO.setup(LED0, GPIO.OUT) # Set Pin as output
+            GPIO.output(LED0, GPIO.HIGH) # Turn on the LED
+            sleep(2)
+            GPIO.output(LED0, GPIO.LOW)
+        sleep(5)
         # return the distance of an object in front of the sensor in cm
-        return distance
+        #return distance
+ 
          
         # we're no longer using the GPIO, so tell software we're done
-        GPIO.cleanup()
-  
-    else:
-        print ("Incorrect usonic() function variable.")
-print (reading(0))
+        #GPIO.cleanup()
 
+'''
+def LED(distance):
+    while True:
+        parameter = 10.0
+        GPIO.setmode(GPIO.BCM)
+        LED0 = 24
+        if distance <= parameter:
+            GPIO.setup(LED0, GPIO.OUT) # Set Pin as output
+            GPIO.output(LED0, GPIO.HIGH) # Turn on the LED
+            sleep(2)
+            GPIO.output(LED0, GPIO.LOW)
+
+        sleep(3)
+'''
 def camera():
     parameter = 50.0
-    if distance <= parameter
+    if distance <= parameter:
         camera.start_preview()
         sleep(10)
         camera.stop_preview()
         
 def main():
-    distance = reading(sensor)
-    camera(distance)
+    distance = reading()
+    #camera(distance)
+    #LED(distance)
 main()
 
