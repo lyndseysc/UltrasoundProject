@@ -3,9 +3,19 @@ import time
 import RPi.GPIO as GPIO
 #from picamera import PiCamera
 from time import sleep
+import os
 
 #camera =PiCamera()
-
+#define functions needed for main fn 
+def LED(distance):
+    LED0 = 24
+    parameter = 10.0
+    if distance <= parameter:
+        GPIO.setup(LED0, GPIO.OUT) # Set Pin as output
+        GPIO.output(LED0, GPIO.HIGH)# Turn on the LED
+        sleep(2)
+        GPIO.output(LED0, GPIO.LOW) #Turn LED off
+    sleep(5)
 
 def reading():
   
@@ -58,19 +68,12 @@ def reading():
          
         distance = (34000.0 * timepassed) * 0.5
         print(distance)
-        parameter = 10.0 #distance at which the LED turns on/camera starts recording
-
+         #distance at which the LED turns on/camera starts recording
+        LED(distance)
         #Whilst the camera isn't working, the theory is demonstrated by flashing an LED instead of recording a video.    
-        LED0 = 24
-        if distance <= parameter:
-            GPIO.setup(LED0, GPIO.OUT) # Set Pin as output
-            GPIO.output(LED0, GPIO.HIGH) # Turn on the LED
-            sleep(2)
-            GPIO.output(LED0, GPIO.LOW) #Turn LED off
-        sleep(5)
-        
-
 '''
+
+
         if distance <= parameter:
             camera.start_preview
             sleep(10)
