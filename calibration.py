@@ -52,7 +52,7 @@ def reading():
         # measurement. So now we convert this distance into centimetres
         # Define relation between "distance" and "timepassed"
          
-        distance = (34000.0 * timepassed) * 0.5
+        distance = (34300.0 * timepassed) * 0.5
         print(distance)
 
 
