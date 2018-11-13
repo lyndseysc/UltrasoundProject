@@ -1,3 +1,5 @@
+#code that simply outputs distance, designed to be used at the start of each session to calibrate
+
 import time
 import RPi.GPIO as GPIO
 from time import sleep
